@@ -1,5 +1,6 @@
 import React from "react";
 import heroImg from "../assets/hero.jpg";
+import heroVector from "../assets/heroSectionVector.png";
 
 const HeroSection = () => {
   return (
@@ -9,16 +10,31 @@ const HeroSection = () => {
         src={heroImg}
         alt="hero"
       />
-      <div>
-        <div className="absolute top-1/3 lg:left-60 md:left-36 left-8">
-          <p className="text-2xl text-white font-bold ">Greetings!</p>
-          <h1 className="text-4xl text-white font-bold ">
-            Welcome to my portfolio
-          </h1>
-          <p className="text-2xl text-white font-bold ">
-            A place where projects come to life
-          </p>
-          <button className="mt-2 hover:bg-teal-500">See projects</button>
+
+      <div className="absolute lg:top-1/4 top-16 left-0 right-0">
+        <div className="flex justify-center items-center">
+          <div className="grid lg:grid-cols-2 gap-4 w-4/6">
+            <div className="flex pt-4 justify-center items-center w-full">
+              <div className="grid lg:justify-items-start lg:text-left text-center justify-items-center">
+                <p className="text-3xl text-white font-bold ">
+                  Your Vision, My Code!
+                </p>
+                <h1 className="text-4xl text-transparent bg-clip-text bg-gradient-to-r from-slate-600 from-10% to-purple-950 to-60% font-bold ">
+                  Hi there, I'm Miras
+                </h1>
+                <p className="text-2xl max-w-96 lg:text-left text-center text-white font-semibold ">
+                  designing and delivering robust web applications using the
+                  MERN stack.
+                </p>
+                <button className="mt-2 w-48 hover:bg-teal-600">
+                  See projects
+                </button>
+              </div>
+            </div>
+            <div className="grid lg:mt-0 mt-10 justify-items-center">
+              <img className=" w-96" src={heroVector} alt="" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
