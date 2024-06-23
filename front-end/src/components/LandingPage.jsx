@@ -1,12 +1,13 @@
-import React from 'react'
-import HeroSection from './HeroSection'
-import LandingPageBody from './LandingPageBody'
+import HeroSection from './HeroSection';
+import LandingPageBody from './LandingPageBody';
 
 const LandingPage = () => {
   return (
-    <HeroSection />
-    
-  )
-}
+    <div>
+      <HeroSection />
+      <LandingPageBody />
+    </div>
+  );
+};
 
-export default LandingPage
+export default LandingPage;
