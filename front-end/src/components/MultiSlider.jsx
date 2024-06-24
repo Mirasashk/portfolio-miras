@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import Slider from 'react-slick';
-import LandingPagePaper from './LandingPagePaper';
 
 const MultiSlider = ({ projects }) => {
   const settings = {
