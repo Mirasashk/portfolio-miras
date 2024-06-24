@@ -1,5 +1,5 @@
-import HeroSection from './HeroSection';
-import LandingPageBody from './LandingPageBody';
+import HeroSection from '../components/HeroSection';
+import LandingPageBody from '../components/LandingPageBody';
 
 const LandingPage = () => {
   return (
