@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 import LandingPagePaper from './LandingPagePaper';
 
-const MultiSlider = () => {
+const MultiSlider = ({ projects }) => {
   const settings = {
     infinite: true,
     speed: 1500,
@@ -9,38 +9,11 @@ const MultiSlider = () => {
     autoplaySpeed: 20000,
     slidesToShow: 2,
     slidesToScroll: 1,
+    arrows: false,
   };
   return (
-    <div className='slider-container w-3/5'>
-      <Slider {...settings}>
-        <div>
-          <LandingPagePaper />
-        </div>
-        <div>
-          <LandingPagePaper />
-        </div>
-        <div>
-          <LandingPagePaper />
-        </div>
-        <div>
-          <LandingPagePaper />
-        </div>
-        <div>
-          <LandingPagePaper />
-        </div>
-        <div>
-          <LandingPagePaper />
-        </div>
-        <div>
-          <LandingPagePaper />
-        </div>
-        <div>
-          <LandingPagePaper />
-        </div>
-        <div>
-          <LandingPagePaper />
-        </div>
-      </Slider>
+    <div className='slider-container lg:w-3/5 md:w-4/5 w-full'>
+      <Slider {...settings}>{projects}</Slider>
     </div>
   );
 };
