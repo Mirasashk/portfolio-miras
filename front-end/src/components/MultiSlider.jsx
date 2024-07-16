@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import Slider from 'react-slick';
 
-const MultiSlider = ({ projects }) => {
+const MultiSlider = ({ projects, slidesToShow }) => {
   const settings = {
     infinite: true,
     speed: 1500,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 20000,
-    slidesToShow: 2,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
     arrows: false,
   };

@@ -21,7 +21,7 @@ const HeroSection = () => {
                   Your Vision, My Code!
                 </p>
                 <h1 className='text-4xl text-transparent bg-clip-text bg-gradient-to-r from-slate-600 from-10% to-purple-950 to-60% font-bold '>
-                  Hi there, I'm Miras
+                  Hi there, I&#39;m Miras
                 </h1>
                 <p className='text-2xl max-w-96 lg:text-left text-center text-white font-semibold '>
                   designing and delivering robust web applications using the
@@ -31,6 +31,11 @@ const HeroSection = () => {
                   onClick={() => navigate('/projects')}
                   className='mt-2 w-48 hover:bg-teal-600'>
                   See projects
+                </button>
+                <button
+                  onClick={() => navigate('/about')}
+                  className='mt-2 w-48 bg-purple-900 hover:bg-teal-600'>
+                  More About me
                 </button>
               </div>
             </div>
