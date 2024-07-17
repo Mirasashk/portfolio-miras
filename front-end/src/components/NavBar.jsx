@@ -1,11 +1,23 @@
 import { HiOutlineMenu } from 'react-icons/hi';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const currentLocation = useLocation();
+  const [navBarBg, setNavBarBg] = useState('');
+
+  useEffect(() => {
+    if (currentLocation.pathname !== '/') {
+      setNavBarBg('bg-teal-800');
+    } else {
+      setNavBarBg('');
+    }
+  }, [currentLocation]);
+
   return (
     <div className='absolute w-full h-screen top-0 left-0'>
-      <div className='grid grid-cols-12 px-8 md:px-24 lg:px-32'>
+      <div className={`grid grid-cols-12 ${navBarBg}  px-8 md:px-24 lg:px-32`}>
         <div className='flex col-span-10 lg:col-span-6 items-center w-full p-4 z-20'>
           <div
             onClick={() => navigate('/')}
