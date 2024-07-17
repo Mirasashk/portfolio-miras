@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useNavigate } from 'react-router-dom';
 
-const SkillsAndCertsPaper = ({ image, title, description, link }) => {
-  const navigate = useNavigate();
+const SkillsAndCertsPaper = ({ image, title, description }) => {
   return (
     <div className='grid justify-center items-center pb-16'>
       <div className='grid justify-center w-60 h-72'>

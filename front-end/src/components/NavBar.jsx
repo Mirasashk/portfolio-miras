@@ -16,7 +16,7 @@ const NavBar = () => {
   }, [currentLocation]);
 
   return (
-    <div className='absolute w-full h-screen top-0 left-0'>
+    <div className='absolute w-full top-0 left-0'>
       <div className={`grid grid-cols-12 ${navBarBg}  px-8 md:px-24 lg:px-32`}>
         <div className='flex col-span-10 lg:col-span-6 items-center w-full p-4 z-20'>
           <div

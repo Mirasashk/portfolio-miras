@@ -2,9 +2,57 @@ import MultiSlider from './MultiSlider';
 import ProjectsPaper from './ProjectsPaper';
 import SkillsAndCertsPaper from './SkillsAndCertsPaper';
 import heroImg from '../assets/hero.jpg';
-import ReactLogo from '../assets/react-logo-teal.png';
+import { useEffect, useState } from 'react';
 
 const LandingPageBody = () => {
+  const [reactIcon, setReactIcon] = useState();
+  useEffect(() => {
+    fetch('http://localhost:3000/skillsAndCerts/images/reactIcon')
+      .then((res) => res.blob())
+      .then((blob) => {
+        setReactIcon(URL.createObjectURL(blob));
+      });
+  }, []);
+
+  const skillsAndCerts = [
+    {
+      title: 'React',
+      image: reactIcon,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+      link: 'skill1',
+    },
+    {
+      title: 'NodeJS',
+      image: reactIcon,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+      link: 'skill2',
+    },
+    {
+      title: 'Mulesoft',
+      image: reactIcon,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+      link: 'skill3',
+    },
+    {
+      title: 'AWS',
+      image: reactIcon,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+      link: 'cert1',
+    },
+    {
+      title: 'Azure',
+      image: heroImg,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+      link: 'cert2',
+    },
+    {
+      title: 'SQL',
+      image: reactIcon,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+      link: 'cert3',
+    },
+  ];
+
   const renderedProjects = projects.map((project) => {
     return (
       <div key={project.title}>
@@ -83,44 +131,5 @@ const projects = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
       'Nulla vitae elit libero, a pharetra augue.',
     link: 'project3',
-  },
-];
-
-const skillsAndCerts = [
-  {
-    title: 'React',
-    image: ReactLogo,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-    link: 'skill1',
-  },
-  {
-    title: 'NodeJS',
-    image: ReactLogo,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-    link: 'skill2',
-  },
-  {
-    title: 'Mulesoft',
-    image: ReactLogo,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-    link: 'skill3',
-  },
-  {
-    title: 'AWS',
-    image: ReactLogo,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-    link: 'cert1',
-  },
-  {
-    title: 'Azure',
-    image: heroImg,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-    link: 'cert2',
-  },
-  {
-    title: 'SQL',
-    image: ReactLogo,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-    link: 'cert3',
   },
 ];
