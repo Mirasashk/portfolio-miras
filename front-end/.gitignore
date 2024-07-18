@@ -24,3 +24,5 @@ src/utils/firebase.js
 *.njsproj
 *.sln
 *.sw?
+
+*.vscode
