@@ -3,55 +3,22 @@ import ProjectsPaper from './ProjectsPaper';
 import SkillsAndCertsPaper from './SkillsAndCertsPaper';
 import heroImg from '../assets/hero.jpg';
 import { useEffect, useState } from 'react';
+import { database } from '../utils/Firebase';
+import { ref, onValue } from 'firebase/database';
 
 const LandingPageBody = () => {
-  const [reactIcon, setReactIcon] = useState();
-  useEffect(() => {
-    fetch('http://localhost:3000/skillsAndCerts/images/reactIcon')
-      .then((res) => res.blob())
-      .then((blob) => {
-        setReactIcon(URL.createObjectURL(blob));
-      });
-  }, []);
+  const [skills, setSkills] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
-  const skillsAndCerts = [
-    {
-      title: 'React',
-      image: reactIcon,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-      link: 'skill1',
-    },
-    {
-      title: 'NodeJS',
-      image: reactIcon,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-      link: 'skill2',
-    },
-    {
-      title: 'Mulesoft',
-      image: reactIcon,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-      link: 'skill3',
-    },
-    {
-      title: 'AWS',
-      image: reactIcon,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-      link: 'cert1',
-    },
-    {
-      title: 'Azure',
-      image: heroImg,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-      link: 'cert2',
-    },
-    {
-      title: 'SQL',
-      image: reactIcon,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-      link: 'cert3',
-    },
-  ];
+  useEffect(() => {
+    const getSkills = ref(database, 'skillsAndCerts');
+    onValue(getSkills, (snapshot) => {
+      const data = snapshot.val();
+      setSkills(data);
+    });
+
+    setLoaded(true);
+  }, []);
 
   const renderedProjects = projects.map((project) => {
     return (
@@ -66,7 +33,7 @@ const LandingPageBody = () => {
     );
   });
 
-  const renderedSkillsAndCerts = skillsAndCerts.map((skillAndCert) => {
+  const renderedSkillsAndCerts = skills.map((skillAndCert) => {
     return (
       <div key={skillAndCert.title}>
         <SkillsAndCertsPaper
@@ -81,24 +48,30 @@ const LandingPageBody = () => {
 
   return (
     <div>
-      <div className='grid grid-cols-1 bg-gray-200'>
-        <div className='flex col-span-1 justify-center items-center pt-8'>
-          <h3 className='text-3xl font-bold'>Recent Projects</h3>
-        </div>
+      {!loaded ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <div className='grid grid-cols-1 bg-gray-200'>
+            <div className='flex col-span-1 justify-center items-center pt-8'>
+              <h3 className='text-3xl font-bold'>Recent Projects</h3>
+            </div>
 
-        <div className='flex col-span-1 justify-center items-center py-8'>
-          <MultiSlider projects={renderedProjects} slidesToShow={2} />
-        </div>
-      </div>
-      <div className='grid grid-cols-1 bg-gray-200'>
-        <div className='flex col-span-1 justify-center items-center pt-8'>
-          <h3 className='text-3xl font-bold'>Skills And Certifications</h3>
-        </div>
+            <div className='flex col-span-1 justify-center items-center py-8'>
+              <MultiSlider projects={renderedProjects} slidesToShow={2} />
+            </div>
+          </div>
+          <div className='grid grid-cols-1 bg-gray-200'>
+            <div className='flex col-span-1 justify-center items-center pt-8'>
+              <h3 className='text-3xl font-bold'>Skills And Certifications</h3>
+            </div>
 
-        <div className='flex col-span-1 justify-center items-center py-8'>
-          <MultiSlider projects={renderedSkillsAndCerts} slidesToShow={3} />
-        </div>
-      </div>
+            <div className='flex col-span-1 justify-center items-center py-8'>
+              <MultiSlider projects={renderedSkillsAndCerts} slidesToShow={3} />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

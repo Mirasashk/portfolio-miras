@@ -1,4 +1,7 @@
 /* eslint-disable react/prop-types */
+import { useState, useEffect } from 'react';
+import { storage } from '../utils/Firebase';
+import { ref, getDownloadURL } from 'firebase/storage';
 
 const SkillsAndCertsPaper = ({ image, title, description }) => {
   return (
