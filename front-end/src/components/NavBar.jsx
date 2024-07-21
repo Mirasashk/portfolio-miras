@@ -38,9 +38,9 @@ const NavBar = () => {
               Projects
             </li>
             <li
-              onClick={() => navigate('/contact')}
+              onClick={() => navigate('/blog')}
               className='text-white hover:text-teal-200 font-semibold cursor-pointer mx-4'>
-              Contact
+              blog
             </li>
             <button
               onClick={() => navigate('/resume')}

@@ -16,8 +16,8 @@ const SkillsAndCertsPaper = ({ image, title, description }) => {
         </div>
         <div
           className={`grid justify-center pt-16 w-60 h-60 bg-teal-800 text-white rounded-3xl shadow-xl hover:shadow-2xl`}>
-          <div className='grid'>
-            <div className='flex justify-center font-bold text-2xl'>
+          <div className='block'>
+            <div className='flex justify-center font-bold h-12 text-2xl'>
               {title}
             </div>
             <div className='flex text-center font-medium px-4'>
