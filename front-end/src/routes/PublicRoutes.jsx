@@ -3,6 +3,7 @@ import App from '../App';
 import ErrorPage from '../components/ErrorPage';
 import LandingPage from '../pages/LandingPage';
 import AboutPage from '../pages/AboutPage';
+import BlogsPage from '../pages/BlogsPage';
 import BlogPage from '../pages/BlogPage';
 import ProjectsPage from '../pages/ProjectsPage';
 import ProjectPage from '../pages/ProjectPage';
@@ -23,7 +24,11 @@ const publicRouter = createBrowserRouter([
         element: <AboutPage />,
       },
       {
-        path: '/blog',
+        path: '/blogs',
+        element: <BlogsPage />,
+      },
+      {
+        path: 'blogs/:blogId',
         element: <BlogPage />,
       },
       {
