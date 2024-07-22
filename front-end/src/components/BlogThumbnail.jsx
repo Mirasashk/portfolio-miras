@@ -22,7 +22,7 @@ const BlogThumbnail = ({
           <div className='text-sm font-mono'>By Miras Ashktorab</div>
           <div className='grid grid-cols-2 w-full'>
             <div className='grid justify-start text-xs font-mono '>
-              Tags: React, Web Development, Javascript
+              Tags: React, Web Development
             </div>
             <div className='grid justify-end text-xs font-mono '>
               5 min read
