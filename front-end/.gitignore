@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 
-src/utils/firebase.js
+src/utils/Firebase.jsx
 .firebase
 firebase.json
 .firebaserc
