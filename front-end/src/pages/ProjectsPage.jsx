@@ -1,6 +1,22 @@
 import ProjectThumbnail from '../components/ProjectThumbnail';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 const ProjectsPage = () => {
+  const [projects, setProjects] = useState('');
+
+  useEffect(() => {
+    axios
+      .get('https://miras-portfolio-api.web.app/projects')
+      .then((response) => {
+        setProjects(response.data);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div className='grid w-full justify-center min-h-screen mt-16 pt-8'>
       <div className='grid justify-center px-72'>
