@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 import heroImage from '../assets/hero.jpg';
 
 const BlogThumbnail = ({
@@ -34,9 +34,10 @@ const BlogThumbnail = ({
         <p className='text-sm'>
           This blog is your destination for insights, tips, and stories from the
           world of software development. Whether you’re a seasoned developer or
-          just starting out, you'll find valuable information here. Dive into my
-          experiences with debugging complex code, exploring new technologies,
-          and navigating the challenges of a software engineer’s life.
+          just starting out, you&apos;ll find valuable information here. Dive
+          into my experiences with debugging complex code, exploring new
+          technologies, and navigating the challenges of a software engineer’s
+          life.
         </p>
         <div className='flex justify-end font-mono text-sm'>Read More...</div>
       </div>
