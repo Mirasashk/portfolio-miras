@@ -1,24 +1,53 @@
 import MultiSlider from './MultiSlider';
 import ProjectsPaper from './ProjectsPaper';
 import SkillsAndCertsPaper from './SkillsAndCertsPaper';
-import heroImg from '../assets/hero.jpg';
 import { useEffect, useState } from 'react';
 import { database } from '../utils/Firebase';
 import { ref, onValue } from 'firebase/database';
+import axios from 'axios';
 
 const LandingPageBody = () => {
   const [skills, setSkills] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    const getSkills = ref(database, 'skillsAndCerts');
-    onValue(getSkills, (snapshot) => {
-      const data = snapshot.val();
-      setSkills(data);
-    });
+    getProjectsThumbnail();
+    getSkillsAndCerts();
+    // const getSkills = ref(database, 'skillsAndCerts');
+    // onValue(getSkills, (snapshot) => {
+    //   const data = snapshot.val();
+    //   setSkills(data);
+    // });
 
     setLoaded(true);
   }, []);
+
+  const getSkillsAndCerts = async () => {
+    axios
+      .get('http://127.0.0.1:5000/skillsAndCerts/thumbnails')
+      .then((response) => {
+        setSkills(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getProjectsThumbnail = async () => {
+    //http://127.0.0.1:5000/projects/thumbnails
+    //https://miras-portfolio-api.web.app/projects/thumbnails
+    axios
+      .get('http://127.0.0.1:5000/projects/thumbnails')
+      .then((response) => {
+        setProjects(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const renderedProjects = projects.map((project) => {
     return (
@@ -26,7 +55,7 @@ const LandingPageBody = () => {
         <ProjectsPaper
           title={project.title}
           description={project.description}
-          image={project.image}
+          image={project.thumbnailImage}
           link={project.link}
         />
       </div>
@@ -78,31 +107,31 @@ const LandingPageBody = () => {
 
 export default LandingPageBody;
 
-const projects = [
-  {
-    title: 'Project 1',
-    image: heroImg,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
-      'Nulla vitae elit libero, a pharetra augue.' +
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
-      'Nulla vitae elit libero, a pharetra augue.',
-    link: 'project1',
-  },
-  {
-    title: 'Project 2',
-    image: heroImg,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
-      'Nulla vitae elit libero, a pharetra augue.',
-    link: 'project2',
-  },
-  {
-    title: 'Project 3',
-    image: heroImg,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
-      'Nulla vitae elit libero, a pharetra augue.',
-    link: 'project3',
-  },
-];
+// const projects = [
+//   {
+//     title: 'Project 1',
+//     image: heroImg,
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+//       'Nulla vitae elit libero, a pharetra augue.' +
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+//       'Nulla vitae elit libero, a pharetra augue.',
+//     link: 'project1',
+//   },
+//   {
+//     title: 'Project 2',
+//     image: heroImg,
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+//       'Nulla vitae elit libero, a pharetra augue.',
+//     link: 'project2',
+//   },
+//   {
+//     title: 'Project 3',
+//     image: heroImg,
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+//       'Nulla vitae elit libero, a pharetra augue.',
+//     link: 'project3',
+//   },
+// ];

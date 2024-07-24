@@ -3,11 +3,13 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 const ProjectsPage = () => {
-  const [projects, setProjects] = useState('');
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
+    //http://127.0.0.1:5000/projects
+    //https://miras-portfolio-api.web.app/projects
     axios
-      .get('https://miras-portfolio-api.web.app/projects')
+      .get('http://127.0.0.1:5000/projects/')
       .then((response) => {
         setProjects(response.data);
         console.log(response);

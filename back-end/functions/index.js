@@ -15,14 +15,20 @@ const cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var loggerMorgan = require('morgan');
+const { initializeApp } = require('firebase-admin/app');
 
 const app = express();
 const corsOptions = {
-  origin: 'https://miras-portfolio.web.app',
+  origin: [
+    'https://miras-portfolio.web.app',
+    'http://81.193.66.11',
+    'http://localhost:5173',
+  ],
   optionsSuccessStatus: 200,
 };
 
 const projectsRouter = require('./routes/projects');
+const skillsAndCertsRouter = require('./routes/skillsAndCerts');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,12 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors(corsOptions));
 
-app.get('/hello', (request, response) => {
-  logger.info('Hello logs!', { structuredData: true });
-  response.send('Hello from Firebase!');
-});
-
 app.use('/projects', projectsRouter);
+app.use('/skillsAndCerts', skillsAndCertsRouter);
 
 // error handler
 app.use(function (err, req, res, next) {

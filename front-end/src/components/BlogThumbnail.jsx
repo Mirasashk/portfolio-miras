@@ -37,9 +37,11 @@ const BlogThumbnail = ({
           just starting out, you&apos;ll find valuable information here. Dive
           into my experiences with debugging complex code, exploring new
           technologies, and navigating the challenges of a software engineer’s
-          life.
+          life.{' '}
+          <a href='' className='hover:text-teal-500 font-mono'>
+            Read More...
+          </a>
         </p>
-        <div className='flex justify-end font-mono text-sm'>Read More...</div>
       </div>
     </div>
   );

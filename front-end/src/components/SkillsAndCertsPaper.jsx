@@ -1,16 +1,29 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-// import { useState, useEffect } from 'react';
-// import { storage } from '../utils/Firebase';
-// import { ref, getDownloadURL } from 'firebase/storage';
+
+import { useState, useEffect } from 'react';
+import { storage } from '../utils/Firebase';
+import { ref, getDownloadURL } from 'firebase/storage';
 
 const SkillsAndCertsPaper = ({ image, title, description }) => {
+  const [imageURL, setImageURL] = useState('');
+  // const storageRef = getStorage();
+  useEffect(() => {
+    getDownloadURL(ref(storage, image))
+      .then((url) => {
+        setImageURL(url);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <div className='grid justify-center items-center pb-16'>
       <div className='grid justify-center w-60 h-72'>
         <div className='z-20 flex justify-center items-center w-full'>
           <div className='flex justify-center items-center h-24 w-24  mb-[-50px] bg-white rounded-full shadow-xl'>
             <div className='w-14'>
-              <img src={image} alt={title} className='h-full' />
+              <img src={imageURL} alt={title} className='h-full' />
             </div>
           </div>
         </div>
@@ -23,13 +36,6 @@ const SkillsAndCertsPaper = ({ image, title, description }) => {
             <div className='flex text-center font-medium px-4'>
               {description}
             </div>
-            {/* <div className='flex justify-center items-end pb-4'>
-              <button
-                onClick={() => navigate(link)}
-                className='bg-white hover:bg-teal-800 text-teal-800 font-bold py-2 px-4 rounded-full'>
-                See Projects
-              </button>
-            </div> */}
           </div>
         </div>
       </div>
