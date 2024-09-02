@@ -2,42 +2,39 @@
 /* eslint-disable react/prop-types */
 
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { ref, getDownloadURL } from 'firebase/storage';
-import { storage } from '../utils/Firebase';
 
 const ProjectsPaper = ({ title, description, image, link }) => {
   const navigate = useNavigate();
-  const [imageURL, setImageURL] = useState('');
-  // const storageRef = getStorage();
-  useEffect(() => {
-    getDownloadURL(ref(storage, image))
-      .then((url) => {
-        setImageURL(url);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+
+  const maxLengthDescription = (description) => {
+    if (description.length > 400) {
+      return description.slice(0, 400) + '...';
+    }
+    return description;
+  };
 
   return (
     <div className='grid justify-center items-center pb-16'>
       <div
-        className={`w-96 h-[28rem] bg-white rounded-2xl shadow-xl hover:shadow-2xl`}>
-        <div className='w-full h-1/2'>
+        className={`grid grid-rows-12 w-96 bg-white pb-6 rounded-2xl shadow-xl hover:shadow-2xl`}>
+        <div className='grid row-span-6 w-full'>
           <img
-            src={imageURL}
+            src={image}
             alt={title}
-            className='w-full h-full 
-                rounded-t-2xl object-contain'
+            className='
+                rounded-t-2xl object-cover h-full w-full'
           />
         </div>
-        <div className='w-full h-1/2 p-4'>
+        <div className='grid row-span-5 w-full  p-4'>
           <h1 className='text-xl font-bold'>{title}</h1>
-          <p className='text-sm text-gray-700'>{description}</p>
+          <p className='text-sm text-gray-700 pb-2'>
+            {maxLengthDescription(description)}
+          </p>
+        </div>
+        <div className='grid row-span-1 items-center justify-start pl-4 '>
           <button
             onClick={() => navigate(`/projects/${link}`)}
-            className='bg-teal-700 hover:bg-teal-500 text-white rounded-lg px-4 py-1 mt-2'>
+            className='bg-teal-700 hover:bg-teal-500 text-white shadow-2xl rounded-lg px-4 py-2 '>
             Read More
           </button>
         </div>

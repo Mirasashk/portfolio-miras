@@ -1,22 +1,23 @@
+/**
+ * Express router for handling skills and certifications routes.
+ * @module routes/skillsAndCerts
+ */
+
 var express = require('express');
 var router = express.Router();
 var { db, bucket } = require('../utils/Firebase');
+const { getDownloadURL } = require('firebase-admin/storage');
+const { getSkillsAndCerts } = require('../controllers/skillsAndCertController');
 
-router.get('/thumbnails', function (req, res) {
-  db.ref('skillsAndCerts').once('value', (snapshot) => {
-    const skillsAndCerts = snapshot.val();
-    console.log(skillsAndCerts);
-
-    const skillsAndCertsThumbnails = skillsAndCerts.map((skills) => {
-      return {
-        title: skills.title,
-        description: skills.description,
-        image: skills.image,
-      };
-    });
-    console.log(skillsAndCertsThumbnails);
-    res.send(skillsAndCertsThumbnails);
-  });
-});
+/**
+ * Route for retrieving thumbnails of skills and certifications.
+ * @name GET /thumbnails
+ * @function
+ * @memberof module:routes/skillsAndCerts
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @returns {Object} - JSON response containing the thumbnails
+ */
+router.get('/thumbnails', getSkillsAndCerts);
 
 module.exports = router;

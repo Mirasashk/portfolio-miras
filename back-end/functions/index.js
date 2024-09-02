@@ -21,6 +21,8 @@ const app = express();
 const corsOptions = {
   origin: [
     'https://miras-portfolio.web.app',
+    'https://mirasashk.com',
+    'https://mirasashktorab.com',
     'http://81.193.66.11',
     'http://localhost:5173',
   ],

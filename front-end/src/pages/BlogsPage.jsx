@@ -2,7 +2,7 @@ import BlogThumbnail from '../components/BlogThumbnail';
 
 const BlogsPage = () => {
   return (
-    <div className='grid w-full justify-center min-h-screen mt-16 pt-8'>
+    <div className='w-full justify-center min-h-screen mt-16 pt-8'>
       <div className='grid justify-center px-72'>
         <div className=''>
           <div className='grid justify-center text-xl font-bold'>
@@ -23,7 +23,7 @@ const BlogsPage = () => {
               of software engineering. Let&apos;s learn and discover together!
             </p>
           </div>
-          <hr className='bg-teal-700 h-1 mt-2' />
+          <hr className='bg-teal-700 h-1 mt-2 mb-4' />
         </div>
         <BlogThumbnail />
       </div>
